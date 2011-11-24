@@ -1637,6 +1637,7 @@
     <string name="national_roaming">National data roaming</string>
     <!-- Mobile network settings screen, setting summary text -->
     <string name="national_roaming_summary">Connect to data services when nationally roaming</string>
+
     <string name="phone_number_label">My phone number</string>
     <string name="phone_number_summary">Set the phone number for this device</string>
     <string name="msisdn_alpha_tag" translatable="false">Voice Line 1</string>
