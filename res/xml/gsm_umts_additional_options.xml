@@ -12,7 +12,7 @@
         android:entryValues="@array/clir_values"
         android:dialogTitle="@string/labelCallerId"
         android:summary="@string/sum_loading_settings"
-        android:enabled="false"/>
+        android:enabled="false" />
 
     <com.android.phone.CallWaitingCheckBoxPreference
         android:key="button_cw_key"
@@ -20,7 +20,7 @@
         android:persistent="false"
         android:summaryOn="@string/sum_cw_enabled"
         android:summaryOff="@string/sum_cw_disabled"
-        android:enabled="false"/>
+        android:enabled="false" />
 
     <com.android.phone.MSISDNEditPreference
         android:key="button_pn_key"
