@@ -1457,4 +1457,9 @@
     <!-- Title for the category "ringtone", which is shown above ringote settings
          [CHAR LIMIT=40] -->
     <string name="preference_category_ringtone">Ringtone</string>
+    
+        <!-- Setting for speaker proximity
+         [CHAR LIMIT=40] -->
+        <string name="speaker_proximity">Speaker Proximity</string>
+    <string name="speaker_proximity_summary">Use proximity during call to activate the speaker</string>
 </resources>
