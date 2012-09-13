@@ -1457,9 +1457,29 @@
     <!-- Title for the category "ringtone", which is shown above ringote settings
          [CHAR LIMIT=40] -->
     <string name="preference_category_ringtone">Ringtone</string>
-    
         <!-- Setting for speaker proximity
          [CHAR LIMIT=40] -->
         <string name="speaker_proximity">Speaker Proximity</string>
     <string name="speaker_proximity_summary">Use proximity during call to activate the speaker</string>
+    <string name="perm_change_mobile_network">Change network (2G/3G)</string>
+    <string name="perm_change_mobile_network_desc">Application with this permission can, at any time, change between 2G data and 3G data. 3G is faster, consumes more battery, and can also cost you more money.</string>
+
+    <!-- Noise suppression -->
+    <string name="noise_suppression_title">Noise suppression</string>
+    <string name="noise_suppression_summary">Enable noise suppression for calls</string>
+    <!-- End Noise suppression -->
+
+    <string name="phone_number_label">My phone number</string>
+    <string name="phone_number_summary">Set the phone number for this device</string>
+
+    <!-- Advanced Settings -->
+    <string name="advanced_setting">Advanced Settings</string>
+    <string name="keep_proximity_sensor_on">Keep proximity sensor on</string>
+    <string name="keep_proximity_sensor_on_sum">Do not turn off the proximity sensor during calls using a headset</string>
+    <string name="vibrate_outgoing">Vibrate on answer</string>
+    <string name="vibrate_call_waiting">Vibrate on call waiting</string>
+    <string name="vibrate_hangup">Vibrate on hang up</string>
+    <string name="vibrate_45">Vibrate every 45 seconds</string>
+    <string name="vibrate_45_sum">Vibrates at the 45 second mark of every minute during outgoing calls</string>
+
 </resources>
