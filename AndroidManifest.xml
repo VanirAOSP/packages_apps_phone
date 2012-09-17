@@ -443,7 +443,7 @@
 
         <!-- Broadcast Receiver that will process BOOT Complete and launch OTA -->
         <receiver android:name="OtaStartupReceiver" android:exported="false">
-            <intent-filter android:priority="100">
+            <intent-filter android:priority="300">
                  <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
         </receiver>
