@@ -75,7 +75,7 @@ import java.util.List;
  */
 public class PhoneUtils {
     private static final String LOG_TAG = "PhoneUtils";
-    private static final boolean DBG = (PhoneApp.DBG_LEVEL >= 2);
+    private static final boolean DBG = (PhoneApp.DBG_LEVEL >= 1);
 
     // Do not check in with VDBG = true, since that may write PII to the system log.
     private static final boolean VDBG = false;
@@ -248,7 +248,7 @@ public class PhoneUtils {
 
         // If the ringer is currently ringing and/or vibrating, stop it
         // right now and prevent new rings (before actually answering the call)
-        PhoneApp.getInstance().notifier.silenceRinger();
+        app.notifier.silenceRinger();
 
         final Phone phone = ringing.getPhone();
         final boolean phoneIsCdma = (phone.getPhoneType() == Phone.PHONE_TYPE_CDMA);

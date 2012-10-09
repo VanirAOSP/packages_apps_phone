@@ -71,6 +71,7 @@ import com.android.phone.Constants.CallStatusCode;
 import com.android.phone.InCallUiState.InCallScreenMode;
 import com.android.phone.OtaUtils.CdmaOtaScreenState;
 
+import android.content.SharedPreferences;
 import java.util.List;
 
 
@@ -83,7 +84,7 @@ public class InCallScreen extends Activity
 
     private static final boolean DBG =
             (PhoneApp.DBG_LEVEL >= 1) && (SystemProperties.getInt("ro.debuggable", 0) == 1);
-    private static final boolean VDBG = (PhoneApp.DBG_LEVEL >= 2);
+    private static final boolean VDBG = (PhoneApp.DBG_LEVEL >= 1);
 
     /**
      * Intent extra used to specify whether the DTMF dialpad should be
