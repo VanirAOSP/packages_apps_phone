@@ -1471,5 +1471,8 @@
     <!-- Title for the category "ringtone", which is shown above ringtone and vibration
          related settings.
          [CHAR LIMIT=40] -->
-    <string name="preference_category_ringtone">Ringtone &amp; Vibrate</string>
+    <string name="preference_category_ringtone">Ringtone</string>
+    
+    <string name="speaker_proximity">Speaker Proximity</string>
+    <string name="speaker_proximity_summary">Use proximity during call to activate the speaker</string>
 </resources>

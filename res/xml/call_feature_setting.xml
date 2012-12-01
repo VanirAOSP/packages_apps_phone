@@ -113,6 +113,14 @@
           android:targetPackage="com.android.phone"
           android:targetClass="com.android.phone.FdnSetting" />
   </PreferenceScreen>
+  
+    <PreferenceScreen 
+    	android:title="@string/speaker_proximity" 
+    	android:summary="@string/speaker_proximity_summary">
+        <intent android:targetPackage="com.android.cna.speakerproximity" 
+        	android:action="android.intent.action.MAIN" 
+        	android:targetClass="com.android.cna.speakerproximity.SpeakerProximity" />
+    </PreferenceScreen>
 
     <CheckBoxPreference
         android:key="button_auto_retry_key"
