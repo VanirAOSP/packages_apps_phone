@@ -62,7 +62,7 @@ public class InCallTouchUi extends FrameLayout
         implements View.OnClickListener, View.OnLongClickListener, OnTriggerListener,
         PopupMenu.OnMenuItemClickListener, PopupMenu.OnDismissListener {
     private static final String LOG_TAG = "InCallTouchUi";
-    private static final boolean DBG = (PhoneGlobals.DBG_LEVEL >= 2);
+    private static final boolean DBG = (PhoneGlobals.DBG_LEVEL >= 0);
 
     // Incoming call widget targets
     private static final int ANSWER_CALL_ID = 0;  // drag right
@@ -1003,7 +1003,11 @@ public class InCallTouchUi extends FrameLayout
     @Override
     public void onReleased(View v, int handle) {
 
-    }
+    }  
+
+        public void onTargetChange(View v, int whichHandle) {
+
+        }
 
     /**
      * Handles "Answer" and "Reject" actions for an incoming call.
