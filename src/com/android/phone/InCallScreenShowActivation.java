@@ -41,8 +41,8 @@ import com.android.internal.telephony.TelephonyCapabilities;
  */
 public class InCallScreenShowActivation extends Activity {
     private static final String LOG_TAG = "InCallScreenShowActivation";
-    private static final boolean DBG =
-            (PhoneGlobals.DBG_LEVEL >= 1) && (SystemProperties.getInt("ro.debuggable", 0) == 1);
+    private static final boolean DBG = false;
+//            (PhoneGlobals.DBG_LEVEL >= 1) && (SystemProperties.getInt("ro.debuggable", 0) == 1);
 
     @Override
     protected void onCreate(Bundle icicle) {

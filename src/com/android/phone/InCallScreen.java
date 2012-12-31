@@ -85,9 +85,9 @@ public class InCallScreen extends Activity
         implements View.OnClickListener {
     private static final String LOG_TAG = "InCallScreen";
 
-    private static final boolean DBG =
-            (PhoneGlobals.DBG_LEVEL >= 1) && (SystemProperties.getInt("ro.debuggable", 0) == 1);
-    private static final boolean VDBG = (PhoneGlobals.DBG_LEVEL >= 2);
+    private static final boolean DBG = false;
+//            (PhoneGlobals.DBG_LEVEL >= 1) && (SystemProperties.getInt("ro.debuggable", 0) == 1);
+    private static final boolean VDBG = (PhoneGlobals.DBG_LEVEL >= 0);
 
     /**
      * Intent extra used to specify whether the DTMF dialpad should be
@@ -124,8 +124,8 @@ public class InCallScreen extends Activity
     // Amount of time (in msec) that we display the "Call ended" state.
     // The "short" value is for calls ended by the local user, and the
     // "long" value is for calls ended by the remote caller.
-    private static final int CALL_ENDED_SHORT_DELAY =  200;  // msec
-    private static final int CALL_ENDED_LONG_DELAY = 2000;  // msec
+    private static final int CALL_ENDED_SHORT_DELAY =  100;  // msec
+    private static final int CALL_ENDED_LONG_DELAY = 1800;  // msec
     private static final int CALL_ENDED_EXTRA_LONG_DELAY = 5000;  // msec
 
     // Amount of time that we display the PAUSE alert Dialog showing the
