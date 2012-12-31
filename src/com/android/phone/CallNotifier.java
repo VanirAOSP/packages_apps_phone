@@ -69,9 +69,9 @@ import java.util.Set;
 public class CallNotifier extends Handler
         implements CallerInfoAsyncQuery.OnQueryCompleteListener {
     private static final String LOG_TAG = "CallNotifier";
-    private static final boolean DBG =
-            (PhoneGlobals.DBG_LEVEL >= 1) && (SystemProperties.getInt("ro.debuggable", 0) == 1);
-    private static final boolean VDBG = (PhoneGlobals.DBG_LEVEL >= 2);
+    private static final boolean DBG = false;
+//            (PhoneGlobals.DBG_LEVEL >= 1) && (SystemProperties.getInt("ro.debuggable", 0) == 1);
+    private static final boolean VDBG = false; //(PhoneGlobals.DBG_LEVEL >= 2);
 
     // Maximum time we allow the CallerInfo query to run,
     // before giving up and falling back to the default ringtone.

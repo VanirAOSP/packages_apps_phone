@@ -63,8 +63,8 @@ public class SipCallOptionHandler extends Activity implements
         DialogInterface.OnClickListener, DialogInterface.OnCancelListener,
         CompoundButton.OnCheckedChangeListener {
     static final String TAG = "SipCallOptionHandler";
-    private static final boolean DBG =
-            (PhoneGlobals.DBG_LEVEL >= 1) && (SystemProperties.getInt("ro.debuggable", 0) == 1);
+    private static final boolean DBG = false;
+//            (PhoneGlobals.DBG_LEVEL >= 1) && (SystemProperties.getInt("ro.debuggable", 0) == 1);
 
     static final int DIALOG_SELECT_PHONE_TYPE = 0;
     static final int DIALOG_SELECT_OUTGOING_SIP_PHONE = 1;

@@ -52,9 +52,9 @@ import java.util.List;
  */
 public class BluetoothPhoneService extends Service {
     private static final String TAG = "BluetoothPhoneService";
-    private static final boolean DBG = (PhoneGlobals.DBG_LEVEL >= 1)
-            && (SystemProperties.getInt("ro.debuggable", 0) == 1);
-    private static final boolean VDBG = (PhoneGlobals.DBG_LEVEL >= 2);  // even more logging
+    private static final boolean DBG = false; //(PhoneGlobals.DBG_LEVEL >= 1)
+//            && (SystemProperties.getInt("ro.debuggable", 0) == 1);
+    private static final boolean VDBG = false; //(PhoneGlobals.DBG_LEVEL >= 2);  // even more logging
 
     private static final String MODIFY_PHONE_STATE = android.Manifest.permission.MODIFY_PHONE_STATE;
 

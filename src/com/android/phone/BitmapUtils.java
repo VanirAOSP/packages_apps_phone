@@ -27,8 +27,8 @@ import android.util.Log;
  */
 public class BitmapUtils {
     private static final String TAG = "BitmapUtils";
-    private static final boolean DBG =
-            (PhoneGlobals.DBG_LEVEL >= 1) && (SystemProperties.getInt("ro.debuggable", 0) == 1);
+    private static final boolean DBG = false;
+//            (PhoneGlobals.DBG_LEVEL >= 1) && (SystemProperties.getInt("ro.debuggable", 0) == 1);
 
     /** This class is never instantiated. */
     private BitmapUtils() {

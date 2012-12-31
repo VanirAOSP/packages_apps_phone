@@ -60,8 +60,8 @@ public class OutgoingCallBroadcaster extends Activity
 
     private static final String PERMISSION = android.Manifest.permission.PROCESS_OUTGOING_CALLS;
     private static final String TAG = "OutgoingCallBroadcaster";
-    private static final boolean DBG =
-            (PhoneGlobals.DBG_LEVEL >= 1) && (SystemProperties.getInt("ro.debuggable", 0) == 1);
+    private static final boolean DBG = false;
+//            (PhoneGlobals.DBG_LEVEL >= 1) && (SystemProperties.getInt("ro.debuggable", 0) == 1);
     // Do not check in with VDBG = true, since that may write PII to the system log.
     private static final boolean VDBG = false;
 
