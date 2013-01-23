@@ -204,7 +204,7 @@
               don't have an icon in the downward direction so the whole
               bottom area of this widget is just wasted space.
     -->
-    <com.android.internal.widget.multiwaveview.GlowPadVie
+    <com.android.internal.widget.multiwaveview.GlowPadView
         android:id="@+id/incomingCallWidget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
