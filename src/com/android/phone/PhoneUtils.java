@@ -410,6 +410,11 @@ public class PhoneUtils {
             return PreferenceManager.getDefaultSharedPreferences(context)
                       .getBoolean("button_show_ssn_key", false);
         }
+        static int flipAction(Context context) {
+            String s = PreferenceManager.getDefaultSharedPreferences(context)
+                      .getString("flip_action", "0");
+            return Integer.parseInt(s);
+        }
     }
 
     static boolean hangupRingingCall(Call ringing) {
@@ -1700,7 +1705,6 @@ public class PhoneUtils {
             }
         };
 
-
     /**
      * Returns a single "name" for the specified given a CallerInfo object.
      * If the name is null, return defaultString as the default value, usually
@@ -1900,8 +1904,8 @@ public class PhoneUtils {
         }
 
         int nsp = android.provider.Settings.System.getInt(context.getContentResolver(),
-                                                              android.provider.Settings.System.NOISE_SUPPRESSION,
-                                                              1);
+                                                          android.provider.Settings.System.NOISE_SUPPRESSION,
+                                                          1);
 
         String aParam = context.getResources().getString(R.string.in_call_noise_suppression_audioparameter);
         String[] aPValues = aParam.split("=");
@@ -2130,8 +2134,8 @@ public class PhoneUtils {
      */
     /* package */ static boolean hasDisconnectedConnections(Phone phone) {
         return hasDisconnectedConnections(phone.getForegroundCall()) ||
-                hasDisconnectedConnections(phone.getBackgroundCall()) ||
-                hasDisconnectedConnections(phone.getRingingCall());
+               hasDisconnectedConnections(phone.getBackgroundCall()) ||
+               hasDisconnectedConnections(phone.getRingingCall());
     }
 
     /**
@@ -2201,8 +2205,8 @@ public class PhoneUtils {
             // "full".
             // TODO: shall move all okToMerge logic to CallManager
             return !cm.hasActiveRingingCall() && cm.hasActiveFgCall()
-                    && cm.hasActiveBgCall()
-                    && cm.canConference(cm.getFirstActiveBgCall());
+                 && cm.hasActiveBgCall()
+                 && cm.canConference(cm.getFirstActiveBgCall());
         }
     }
 
@@ -2242,8 +2246,8 @@ public class PhoneUtils {
             return !hasRingingCall
                     && !allLinesTaken
                     && ((fgCallState == Call.State.ACTIVE)
-                        || (fgCallState == Call.State.IDLE)
-                        || (fgCallState == Call.State.DISCONNECTED));
+                     || (fgCallState == Call.State.IDLE)
+                     || (fgCallState == Call.State.DISCONNECTED));
         } else {
             throw new IllegalStateException("Unexpected phone type: " + phoneType);
         }
@@ -2485,7 +2489,6 @@ public class PhoneUtils {
         return activated;
     }
 
-
     /**
      * Returns whether the phone is in ECM ("Emergency Callback Mode") or not.
      */
@@ -2661,7 +2664,6 @@ public class PhoneUtils {
         b.append(" hasConnections ").append(call.hasConnections());
         Log.d(LOG_TAG, b.toString());
 
-
         final boolean hasRingingCall = !phone.getRingingCall().isIdle();
         final boolean hasActiveCall = !phone.getForegroundCall().isIdle();
         final boolean hasHoldingCall = !phone.getBackgroundCall().isIdle();
@@ -2699,8 +2701,6 @@ public class PhoneUtils {
         CallManager cm = PhoneGlobals.getInstance().mCM;
         StringBuilder b = new StringBuilder(128);
 
-
-
         Log.d(LOG_TAG, "############### dumpCallManager() ##############");
         // TODO: Don't log "cm" itself, since CallManager.toString()
         // already spews out almost all this same information.
@@ -2729,8 +2729,6 @@ public class PhoneUtils {
         b.append(call);
         b.append( "  State: ").append(cm.getFirstActiveRingingCall().getState());
         Log.d(LOG_TAG, b.toString());
-
-
 
         for (Phone phone : CallManager.getInstance().getAllPhones()) {
             if (phone != null) {
