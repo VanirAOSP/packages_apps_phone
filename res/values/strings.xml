@@ -81,7 +81,7 @@
     <string name="callFailed_dsac_restricted_normal">Normal calls are restricted by access control.</string>
     <!-- In-call screen: call failure reason (Dialed number doesn't exist) -->
     <string name="callFailed_unobtainable_number">Invalid number</string>
-    <!-- In-call screen: status label for an incoming call that is not answered and forwarded  -->
+    <!-- In-call screen: status label for an incoming call that is not answered and forwarded -->
     <string name="callUnanswered_forwarded">Call Unanswered and Forwarded</string>
     <!-- In-call screen: status label for a conference call -->
     <string name="confCall">Conference call</string>
@@ -385,7 +385,7 @@
         <item>GSM only</item>
         <item>GSM/WCDMA preferred</item>
     </string-array>
-    <string-array name="preferred_network_mode_values"  translatable="false">
+    <string-array name="preferred_network_mode_values" translatable="false">
         <item>"7"</item>
         <item>"6"</item>
         <item>"5"</item>
@@ -598,7 +598,7 @@
         <!-- Do not translate. -->
         <item>"0"</item>
         <!-- Remove the following value "1" which corresponds to "Affiliated Networks" above -->
-        <!-- <item>"1"</item>  -->
+        <!-- <item>"1"</item> -->
         <!-- Do not translate. -->
         <item>"2"</item>
     </string-array>
@@ -801,7 +801,7 @@
     <string name="card_title_conf_call">Conference call</string>
     <!-- In-call screen: status label for an incoming call -->
     <string name="card_title_incoming_call">Incoming call</string>
-    <!-- In-call screen: status label for a call that is held remotely  -->
+    <!-- In-call screen: status label for a call that is held remotely -->
     <string name="card_title_waiting_call">Waiting call</string>
     <!-- In-call screen: status label displayed briefly after a call ends -->
     <string name="card_title_call_ended">Call ended</string>
@@ -816,13 +816,13 @@
     <string name="card_title_my_phone_number">My number is <xliff:g id="my_phone_number">%s</xliff:g></string>
 
     <!-- Toasts for various transient network events -->
-    <!-- Toast text for Unconditional Call Forwarding enabled  -->
+    <!-- Toast text for Unconditional Call Forwarding enabled -->
     <string name="call_notif_unconditionalCF">Unconditional call forwarding active</string>
-    <!-- Toast text for Conditional Call Forwarding enabled  -->
+    <!-- Toast text for Conditional Call Forwarding enabled -->
     <string name="call_notif_conditionalCF">Conditional call forwarding active</string>
-    <!-- Toast text for a forwarded MO call  -->
+    <!-- Toast text for a forwarded MO call -->
     <string name="call_notif_MOcall_forwarding">Outgoing call is forwarded</string>
-    <!-- In-call screen: status label when Call waiting is enabled on remote party  -->
+    <!-- In-call screen: status label when Call waiting is enabled on remote party -->
     <string name="call_notif_calliswaiting">Remote party is busy, call is waiting</string>
     <!-- Toast text for MO call, when the caller & callee both belng to a CUG group -->
     <string name="call_notif_cugcall">Call in closed user group</string>
@@ -834,7 +834,7 @@
     <string name="call_notif_clir_suppression_rejected">Own number suppression rejected by network</string>
     <!-- In-call screen: status label when MO call gets deflected to another party -->
     <string name="call_notif_call_deflected">Call forwarded by remote party</string>
-    <!-- Toast text for incoming call being forwarded to other remote party  -->
+    <!-- Toast text for incoming call being forwarded to other remote party -->
     <string name="call_notif_MTcall_forwarding">Incoming call is forwarded</string>
     <!-- Toast text for incoming call which is part of MultiParty Call -->
     <string name="call_notif_multipartycall">Multi-party call</string>
@@ -925,7 +925,7 @@
     <!-- In-call screen: message displayed in an error dialog -->
     <string name="incall_error_supp_service_hangup">Unable to release call(s).</string>
 
-    <!-- In-call screen: "call type" indication for a SIP call [CHAR LIMIT=30]  -->
+    <!-- In-call screen: "call type" indication for a SIP call [CHAR LIMIT=30] -->
     <string name="incall_call_type_label_sip">Internet call</string>
     <!-- In-call screen: "call type" indication for a forwarded call [CHAR LIMIT=30] -->
     <string name="incall_call_type_label_forwarded">Forwarded call</string>
@@ -982,7 +982,7 @@
     <string name="hac_mode_title">Hearing aids</string>
     <string name="hac_mode_summary">Turn on hearing aid compatibility</string>
 
-    <!-- Service option entries.  -->
+    <!-- Service option entries. -->
     <string-array name="tty_mode_entries">
         <item>TTY Off</item>
         <item>TTY Full</item>
@@ -1136,7 +1136,6 @@
     <!--  Use this to describe the select contact button in EditPhoneNumberPreference; currently for screen readers through accessibility. -->
     <string name="selectContact">select contact</string>
 
-
     <!-- Start of SIP related strings defined from here. -->
 
     <!-- Title displayed SIP settings coming after other call settings in the call features screen. [CHAR LIMIT=NONE] -->
@@ -1238,7 +1237,6 @@
     <!-- Text for describing the account's owner and status. For example, 'Active, in use by Google Talk', it means that the account managed by SIP service was registered by the application 'Google Talk' and the status is active. [CHAR LIMIT=NONE] -->
     <string name="third_party_account_summary">This account is currently in use by the <xliff:g id="account_owner" example="Google Talk">%s</xliff:g> app.</string>
 
-
     <!-- Title of the sip editor screen. [CHAR LIMIT=NONE] -->
     <string name="sip_edit_title">SIP account details</string>
     <!-- Title of the sip editor screen. [CHAR LIMIT=NONE] -->
@@ -1282,7 +1280,6 @@
     <string translatable="false" name="default_port">5060</string>
     <!-- Default sip server/proxy transport protocol. -->
     <string translatable="false" name="default_transport">UDP</string>
-
 
     <!-- Hint to show the advanced settings section. [CHAR LIMIT=NONE] -->
     <string name="advanced_settings_show">▷ Touch to show all</string>
@@ -1524,7 +1521,7 @@
     <!-- Title for the category "ringtone", which is shown above ringote settings
          [CHAR LIMIT=40] -->
     <string name="preference_category_ringtone">Ringtone</string>
-    
+
     <string name="speaker_proximity">Speaker Proximity</string>
     <string name="speaker_proximity_summary">Use proximity during call to activate the speaker</string>
     <!-- Advanced Settings -->
@@ -1535,7 +1532,7 @@
     <string name="vibrate_60_sum">Vibrates at the 60 second mark of every minute during outgoing calls</string>
     <string name="vibrate_hangup">Vibrate on hangup</string>
     <string name="vibrate_hangup_sum">Vibrate when a call has ended</string>
-    
+
     <string name="show_ssn_label">Event notification</string>
     <string name="show_ssn_summary">Show a notification for various network events related to call handling</string>
 
@@ -1545,5 +1542,36 @@
     <!-- Noise suppression -->
     <string name="noise_suppression_title">Noise suppression</string>
     <string name="noise_suppression_summary">Enable noise suppression for calls</string>
-    
+
+    <!-- Setting title for the flip action setting. -->
+    <string name="flip_action_title">Flip action</string>
+
+    <!-- Dialog title of the flip action setting. -->
+    <string name="flip_action_dialog_title">Flip device to\u2026</string>
+
+    <!-- Setting summary for the flip action setting. -->
+    <string name="flip_action_summary">Flipping the phone down will <xliff:g id="action">%s</xliff:g></string>
+
+    <!-- Values for the flip action settings. -->
+    <string-array name="flip_action_setting_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <!-- Entries listed in the setting for the flip action. -->
+    <string-array name="flip_action_setting_entries">
+        <item>Do nothing</item>
+        <item>Mute ringer</item>
+        <item>Dismiss call</item>
+    </string-array>
+
+    <!-- Summary texts for flip action. Must be ordered by numerical
+         value (do nothing = 0, mute = 1, dismiss = 2) -->
+    <string-array name="flip_action_summary_entries">
+        <item>do nothing</item>
+        <item>mute the ringer</item>
+        <item>dismiss the call</item>
+    </string-array>
+
 </resources>

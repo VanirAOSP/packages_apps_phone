@@ -34,6 +34,14 @@
             android:title="@string/vibrate_on_ring_title"
             android:persistent="false"
             android:defaultValue="false" />
+
+        <ListPreference
+            android:key="flip_action"
+            android:title="@string/flip_action_title"
+            android:dialogTitle="@string/flip_action_dialog_title"
+            android:entries="@array/flip_action_setting_entries"
+            android:entryValues="@array/flip_action_setting_values"
+            android:defaultValue="0" />
     </PreferenceCategory>
 
   <PreferenceCategory
@@ -44,43 +52,50 @@
         android:key="button_vibrate_outgoing"
         android:title="@string/vibrate_outgoing"
         android:persistent="true"
-        android:summary="@string/vibrate_outgoing_sum"/>
+        android:summary="@string/vibrate_outgoing_sum" />
+
     <CheckBoxPreference
         android:key="button_vibrate_60"
         android:title="@string/vibrate_60"
         android:persistent="true"
-        android:summary="@string/vibrate_60_sum"/>
+        android:summary="@string/vibrate_60_sum" />
+
     <CheckBoxPreference
         android:key="button_vibrate_hangup"
         android:title="@string/vibrate_hangup"
         android:persistent="true"
-        android:summary="@string/vibrate_hangup_sum"/>
+        android:summary="@string/vibrate_hangup_sum" />
+
     <CheckBoxPreference
         android:key="button_vibrate_call_waiting"
         android:title="@string/vibrate_call_waiting"
         android:persistent="true"
-        android:summary="@string/vibrate_call_waiting_sum"/>
+        android:summary="@string/vibrate_call_waiting_sum" />
+
     <CheckBoxPreference
-	    android:key="button_noise_suppression_key"
-	    android:title="@string/noise_suppression_title"
-	    android:summary="@string/noise_suppression_summary"
-	    android:persistent="true"/>
+        android:key="button_noise_suppression_key"
+        android:title="@string/noise_suppression_title"
+        android:summary="@string/noise_suppression_summary"
+        android:persistent="true" />
   </PreferenceCategory>
-  
+
   <PreferenceCategory
       android:key="button_misc_category_key"
       android:title="@string/other_settings"
       android:persistent="false" />
+
     <PreferenceScreen
       android:key="button_voicemail_category_key"
       android:title="@string/voicemail"
       android:persistent="false">
+
       <ListPreference
           android:key="button_voicemail_provider_key"
           android:title="@string/voicemail_provider"
           android:summary="@string/sum_voicemail_choose_provider"
           android:defaultValue=""
           android:persistent="true" />
+
       <PreferenceScreen
           android:key="button_voicemail_setting_key"
           android:title="@string/voicemail_settings"
@@ -133,6 +148,7 @@
       android:title="@string/respond_via_sms_setting_title"
       android:summary="@string/respond_via_sms_setting_summary"
       android:persistent="false">
+
       <intent
           android:action="android.intent.action.MAIN"
           android:targetPackage="com.android.phone"
@@ -143,24 +159,27 @@
       android:key="button_fdn_key"
       android:title="@string/fdn"
       android:persistent="false">
-      <intent android:action="android.intent.action.MAIN"
+
+      <intent
+          android:action="android.intent.action.MAIN"
           android:targetPackage="com.android.phone"
           android:targetClass="com.android.phone.FdnSetting" />
   </PreferenceScreen>
-  
-    <PreferenceScreen 
-    	android:title="@string/speaker_proximity" 
-    	android:summary="@string/speaker_proximity_summary">
-        <intent android:targetPackage="net.androcom.dho.speakerproximity" 
-        	android:action="android.intent.action.MAIN" 
-        	android:targetClass="net.androcom.dho.speakerproximity.SpeakerProximity" />
+
+    <PreferenceScreen
+        android:title="@string/speaker_proximity"
+        android:summary="@string/speaker_proximity_summary">
+        <intent
+            android:targetPackage="net.androcom.dho.speakerproximity"
+            android:action="android.intent.action.MAIN"
+            android:targetClass="net.androcom.dho.speakerproximity.SpeakerProximity" />
     </PreferenceScreen>
 
     <CheckBoxPreference
         android:key="button_auto_retry_key"
         android:title="@string/auto_retry_mode_title"
         android:persistent="false"
-        android:summary="@string/auto_retry_mode_summary"/>
+        android:summary="@string/auto_retry_mode_summary" />
 
     <ListPreference
         android:key="button_tty_mode_key"
@@ -168,20 +187,20 @@
         android:summary="@string/tty_mode_option_summary"
         android:persistent="false"
         android:entries="@array/tty_mode_entries"
-        android:entryValues="@array/tty_mode_values"/>
+        android:entryValues="@array/tty_mode_values" />
 
      <CheckBoxPreference
         android:key="button_hac_key"
         android:title="@string/hac_mode_title"
         android:persistent="true"
-        android:summary="@string/hac_mode_summary"/>
+        android:summary="@string/hac_mode_summary" />
 
     <ListPreference
         android:key="button_dtmf_settings"
         android:title="@string/dtmf_tones_title"
         android:summary="@string/dtmf_tones_summary"
         android:entries="@array/dtmf_tone_entries"
-        android:entryValues="@array/dtmf_tone_values"/>
+        android:entryValues="@array/dtmf_tone_values" />
 
     <PreferenceScreen
         android:key="button_gsm_more_expand_key"
@@ -189,9 +208,10 @@
         android:summary="@string/sum_gsm_call_settings"
         android:persistent="false">
 
-        <intent android:action="android.intent.action.MAIN"
+        <intent
+            android:action="android.intent.action.MAIN"
             android:targetPackage="com.android.phone"
-            android:targetClass="com.android.phone.GsmUmtsCallOptions"/>
+            android:targetClass="com.android.phone.GsmUmtsCallOptions" />
     </PreferenceScreen>
 
     <PreferenceScreen
@@ -200,8 +220,9 @@
         android:summary="@string/sum_cdma_call_settings"
         android:persistent="false">
 
-        <intent android:action="android.intent.action.MAIN"
+        <intent
+            android:action="android.intent.action.MAIN"
             android:targetPackage="com.android.phone"
-            android:targetClass="com.android.phone.CdmaCallOptions"/>
+            android:targetClass="com.android.phone.CdmaCallOptions" />
     </PreferenceScreen>
 </PreferenceScreen>

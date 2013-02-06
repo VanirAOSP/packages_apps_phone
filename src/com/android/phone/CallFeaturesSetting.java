@@ -161,8 +161,8 @@ public class CallFeaturesSetting extends PreferenceActivity
             "button_voicemail_notification_vibrate_when_key";
     /* package */ static final String BUTTON_VOICEMAIL_NOTIFICATION_RINGTONE_KEY =
             "button_voicemail_notification_ringtone_key";
-    private static final String BUTTON_FDN_KEY   = "button_fdn_key";
-    private static final String BUTTON_RESPOND_VIA_SMS_KEY   = "button_respond_via_sms_key";
+    private static final String BUTTON_FDN_KEY = "button_fdn_key";
+    private static final String BUTTON_RESPOND_VIA_SMS_KEY = "button_respond_via_sms_key";
 
     private static final String BUTTON_RINGTONE_KEY    = "button_ringtone_key";
     private static final String BUTTON_VIBRATE_ON_RING = "button_vibrate_on_ring";
@@ -184,6 +184,8 @@ public class CallFeaturesSetting extends PreferenceActivity
             "sip_call_options_wifi_only_key";
     private static final String SIP_SETTINGS_CATEGORY_KEY =
             "sip_settings_category_key";
+
+    private static final String FLIP_ACTION_KEY = "flip_action";
 
     private Intent mContactListIntent;
 
@@ -219,7 +221,6 @@ public class CallFeaturesSetting extends PreferenceActivity
     private static final int VM_RESPONSE_ERROR = 500;
     private static final int FW_SET_RESPONSE_ERROR = 501;
     private static final int FW_GET_RESPONSE_ERROR = 502;
-
 
     // dialog identifiers for voicemail
     private static final int VOICEMAIL_DIALOG_CONFIRM = 600;
@@ -265,6 +266,7 @@ public class CallFeaturesSetting extends PreferenceActivity
     private PreferenceScreen mVoicemailSettings;
     private ListPreference mVoicemailNotificationVibrateWhen;
     private SipSharedPreferences mSipSharedPreferences;
+    private ListPreference mFlipAction;
 
     private class VoiceMailProvider {
         public VoiceMailProvider(String name, Intent intent) {
@@ -477,11 +479,11 @@ public class CallFeaturesSetting extends PreferenceActivity
         } else if (preference == mButtonTTY) {
             return true;
         } else if (preference == mButtonNoiseSuppression) {
-	            int nsp = mButtonNoiseSuppression.isChecked() ? 1 : 0;
-	            // Update Noise suppression value in Settings database
-	            Settings.System.putInt(mPhone.getContext().getContentResolver(),
-	                    Settings.System.NOISE_SUPPRESSION, nsp);
-			return true;  
+                int nsp = mButtonNoiseSuppression.isChecked() ? 1 : 0;
+                // Update Noise suppression value in Settings database
+                Settings.System.putInt(mPhone.getContext().getContentResolver(),
+                        Settings.System.NOISE_SUPPRESSION, nsp);
+            return true;
         } else if (preference == mButtonAutoRetry) {
             android.provider.Settings.Global.putInt(mPhone.getContext().getContentResolver(),
                     android.provider.Settings.Global.CALL_AUTO_RETRY,
@@ -588,9 +590,19 @@ public class CallFeaturesSetting extends PreferenceActivity
                     mVoicemailNotificationVibrateWhen.getEntry());
         } else if (preference == mButtonSipCallOptions) {
             handleSipCallOptionsChange(objValue);
+        } else if (preference == mFlipAction) {
+            updateFlipActionSummary((String) objValue);
         }
         // always let the preference setting proceed.
         return true;
+    }
+
+    private void updateFlipActionSummary(String action) {
+        int i = Integer.parseInt(action);
+        if (mFlipAction != null) {
+            String[] summaries = getResources().getStringArray(R.array.flip_action_summary_entries);
+            mFlipAction.setSummary(getString(R.string.flip_action_summary, summaries[i]));
+        }
     }
 
     @Override
@@ -632,7 +644,6 @@ public class CallFeaturesSetting extends PreferenceActivity
         if (DBG) log("updating default for call forwarding dialogs");
         return getString(R.string.voicemail_abbreviated) + " " + vmDisplay;
     }
-
 
     // override the startsubactivity call to make changes in state consistent.
     @Override
@@ -829,7 +840,6 @@ public class CallFeaturesSetting extends PreferenceActivity
                 new VoiceMailProviderSettings(mSubMenuVoicemailSettings.getPhoneNumber(),
                         FWD_SETTINGS_DONT_TOUCH));
     }
-
 
     /**
      * Wrapper around showDialog() that will silently do nothing if we're
@@ -1414,7 +1424,6 @@ public class CallFeaturesSetting extends PreferenceActivity
             return dialog;
         }
 
-
         return null;
     }
 
@@ -1515,6 +1524,7 @@ public class CallFeaturesSetting extends PreferenceActivity
         mButtonTTY = (ListPreference) findPreference(BUTTON_TTY_KEY);
         mButtonNoiseSuppression = (CheckBoxPreference) findPreference(BUTTON_NOISE_SUPPRESSION_KEY);
         mVoicemailProviders = (ListPreference) findPreference(BUTTON_VOICEMAIL_PROVIDER_KEY);
+        mFlipAction = (ListPreference) findPreference(FLIP_ACTION_KEY);
         if (mVoicemailProviders != null) {
             mVoicemailProviders.setOnPreferenceChangeListener(this);
             mVoicemailSettings = (PreferenceScreen)findPreference(BUTTON_VOICEMAIL_SETTING_KEY);
@@ -1576,15 +1586,20 @@ public class CallFeaturesSetting extends PreferenceActivity
                 mButtonTTY = null;
             }
         }
-		if (mButtonNoiseSuppression != null) {
-	            if (getResources().getBoolean(R.bool.has_in_call_noise_suppression)) {
-	                mButtonNoiseSuppression.setOnPreferenceChangeListener(this);
-	            } else {
-	                prefSet.removePreference(mButtonNoiseSuppression);
-	                mButtonNoiseSuppression = null;
-	            }
-	        }
-	        
+
+	if (mButtonNoiseSuppression != null) {
+            if (getResources().getBoolean(R.bool.has_in_call_noise_suppression)) {
+                mButtonNoiseSuppression.setOnPreferenceChangeListener(this);
+            } else {
+                prefSet.removePreference(mButtonNoiseSuppression);
+                mButtonNoiseSuppression = null;
+            }
+        }
+
+        if (mFlipAction != null) {
+            mFlipAction.setOnPreferenceChangeListener(this);
+        }
+
         if (!getResources().getBoolean(R.bool.world_phone)) {
             Preference options = prefSet.findPreference(BUTTON_CDMA_OPTIONS);
             if (options != null)
@@ -1759,6 +1774,10 @@ public class CallFeaturesSetting extends PreferenceActivity
                     Phone.TTY_MODE_OFF);
             mButtonTTY.setValue(Integer.toString(settingsTtyMode));
             updatePreferredTtyModeSummary(settingsTtyMode);
+        }
+
+        if (mFlipAction != null) {
+            updateFlipActionSummary(mFlipAction.getValue());
         }
 
         lookupRingtoneName();
