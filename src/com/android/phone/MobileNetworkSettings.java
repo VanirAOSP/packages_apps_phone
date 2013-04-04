@@ -255,19 +255,6 @@ public class MobileNetworkSettings extends PreferenceActivity
 
             } else if (phoneType == PhoneConstants.PHONE_TYPE_GSM) {
                 mGsmUmtsOptions = new GsmUmtsOptions(this, prefSet);
-                if (isLteOnGsm) {
-                    mButtonPreferredNetworkMode.setOnPreferenceChangeListener(this);
-                    mButtonPreferredNetworkMode.setEntries(
-                            R.array.preferred_network_mode_choices_lte_gsm);
-                    mButtonPreferredNetworkMode.setEntryValues(
-                            R.array.preferred_network_mode_values_lte_gsm);
-                    int settingsNetworkMode = android.provider.Settings.Secure.getInt(
-                            mPhone.getContext().getContentResolver(),
-                            android.provider.Settings.Global.PREFERRED_NETWORK_MODE,
-                            preferredNetworkMode);
-                    mButtonPreferredNetworkMode.setValue(
-                            Integer.toString(settingsNetworkMode));
-                }
             } else {
                 throw new IllegalStateException("Unexpected phone type: " + phoneType);
             }
