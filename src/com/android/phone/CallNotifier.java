@@ -259,6 +259,8 @@ public class CallNotifier extends Handler
             }
         }
         return false;
+    }
+
     private void createSignalInfoToneGenerator() {
         // Instantiate the ToneGenerator for SignalInfo and CallWaiting
         // TODO: We probably don't need the mSignalInfoToneGenerator instance
