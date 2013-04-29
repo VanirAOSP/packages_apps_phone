@@ -138,10 +138,19 @@ class Blacklist {
      * @return one of: MATCH_NONE, MATCH_PRIVATE, MATCH_LIST or MATCH_REGEX
      */
     private int matchesBlacklist(String s) {
-        // Private number matching
-        if (PhoneUtils.PhoneSettings.isBlacklistPrivateNumberEnabled(mContext)
-                && s.equals(PRIVATE_NUMBER)) {
-            return MATCH_PRIVATE;
+        // Private and unknown number matching
+        if (s.equals(PRIVATE_NUMBER)) {
+            if (PhoneUtils.PhoneSettings.isBlacklistPrivateNumberEnabled(mContext)) {
+                return MATCH_PRIVATE;
+            }
+            return MATCH_NONE;
+        }
+
+        if (PhoneUtils.PhoneSettings.isBlacklistUnknownNumberEnabled(mContext)) {
+            CallerInfo ci = CallerInfo.getCallerInfo(mContext, s);
+            if (!ci.contactExists) {
+                return MATCH_UNKNOWN;
+            }
         }
 
         // Standard list matching
