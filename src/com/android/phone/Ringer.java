@@ -170,7 +170,7 @@ public class Ringer {
             AudioManager audioManager =
                     (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
 
-            if (audioManager.getStreamVolume(AudioManager.STREAM_RING) == 0) {
+            if (audioManager.getStreamVolume(AudioManager.STREAM_RING) == 0 || inQuietHours()) {
                 if (DBG) log("skipping ring because volume is zero");
                 PhoneUtils.setAudioMode();
                 return;
