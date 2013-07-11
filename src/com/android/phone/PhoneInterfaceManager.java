@@ -46,6 +46,7 @@ import com.android.internal.telephony.ITelephony;
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.CallManager;
 import com.android.internal.telephony.PhoneConstants;
+import com.android.internal.telephony.RILConstants;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -291,28 +292,29 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
     public void toggleLTE(boolean on) {
         int network = -1;
-        boolean usesQcLte = SystemProperties.getBoolean(
-                        "ro.config.qc_lte_network_modes", false);
-        if (usesQcLte) {
+        if (getLteOnCdmaMode() == PhoneConstants.LTE_ON_CDMA_TRUE) {
             if (on) {
-                network = PhoneConstants.NT_MODE_LTE_CDMA_EVDO;
+                if ((network = mApp.getResources().getInteger(R.integer.toggleLTE_lte_cdma_nt_mode)) == -1)
+                    network = Phone.NT_MODE_GLOBAL;
             } else {
-                network = PhoneConstants.NT_MODE_CDMA;
+                network = Phone.NT_MODE_CDMA;
+            }
+        } else if (getLteOnGsmMode() != 0) {
+            if (on) {
+                network = Phone.NT_MODE_LTE_GSM_WCDMA;
+            } else {
+                network = Phone.NT_MODE_WCDMA_PREF;
             }
         } else {
-            if (on) {
-                network = PhoneConstants.NT_MODE_GLOBAL;
-            } else {
-                network = PhoneConstants.NT_MODE_CDMA;
-            }
+            // Not an LTE device.
+            return;
         }
-
         mPhone.setPreferredNetworkType(network,
                 mMainThreadHandler.obtainMessage(CMD_TOGGLE_LTE));
-        Settings.Secure.putInt(mApp.getContentResolver(),
-                Settings.Global.PREFERRED_NETWORK_MODE, network);
+        android.provider.Settings.Global.putInt(mApp.getContentResolver(),
+                android.provider.Settings.Global.PREFERRED_NETWORK_MODE, network);
     }
-    
+
     public void toggle2G(boolean on) {
         int network = -1;
         if (on) {
