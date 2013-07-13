@@ -1500,6 +1500,73 @@
     <string name="vibrate_60">Vibrate every 60 seconds</string>
     <string name="vibrate_60_sum">Vibrates at the 60 second mark of every minute during outgoing calls</string>
     <string name="vibrate_hangup_sum">Vibrate when a call has ended</string>
+    <string name="rejected_as_missed">Rejected calls as missed</string>
+    <string name="rejected_as_missed_sum">Mark rejected calls as \'missed\' rather than \'incoming\' in the call log</string>
+    <string name="show_ssn_label">Event notification</string>
+    <string name="show_ssn_summary">Show a notification for various network events related to call handling</string>
+    <string name="calllog_after_call">Call log after call</string>
+    <string name="calllog_after_call_summary">Show the call log after ending a call</string>
+
+    <string name="vibrate_call_waiting">Vibrate call waiting</string>
+    <string name="vibrate_call_waiting_sum">Vibrate on call waiting</string>
+
+    <!-- Noise suppression -->
+    <string name="noise_suppression_title">Noise suppression</string>
+    <string name="noise_suppression_summary">Enable noise suppression for calls</string>
+
+    <!-- Setting title for the flip action setting. -->
+    <string name="flip_action_title">Flip action</string>
+
+    <!-- Dialog title of the flip action setting. -->
+    <string name="flip_action_dialog_title">Flip device to\u2026</string>
+
+    <!-- Setting summary for the flip action setting. -->
+    <string name="flip_action_summary">Flipping the phone down will <xliff:g id="action">%s</xliff:g></string>
+
+    <!-- Values for the flip action settings. -->
+    <string-array name="flip_action_setting_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <!-- Entries listed in the setting for the flip action. -->
+    <string-array name="flip_action_setting_entries">
+        <item>Do nothing</item>
+        <item>Mute ringer</item>
+        <item>Dismiss call</item>
+    </string-array>
+
+    <!-- Summary texts for flip action. Must be ordered by numerical
+         value (do nothing = 0, mute = 1, dismiss = 2) -->
+    <string-array name="flip_action_summary_entries">
+        <item>do nothing</item>
+        <item>mute the ringer</item>
+        <item>dismiss the call</item>
+    </string-array>
+
+    <!-- Blacklist preferences -->
+    <string name="blacklist_title">Blacklist</string>
+    <string name="blacklist_summary_disabled">Disabled</string>
+    <string name="blacklist_summary">Incoming calls from phone numbers in the blacklist will be blocked</string>
+
+    <!-- Blacklist notifications -->
+    <string name="blacklist_notification">Blocked a call from %s</string>
+    <string name="blacklist_notification_private_number">Blocked a call from a private number</string>
+    <string name="blacklist_notification_list_private">Private</string>
+    <string name="blacklist_notification_unknown_number">Blocked unknown number %s</string>
+    <string name="blacklist_notification_multiple"><xliff:g id="count">%d</xliff:g> calls were blocked</string>
+    <string name="unblock_number">Unblock</string>
+
+   <!-- Blacklist management -->
+    <string name="add_blacklist_number">Add phone number</string>
+    <string name="add_to_blacklist">Add to blacklist</string>
+    <string name="add_to_blacklist_message">Future calls from %s will be blocked</string>
+    <string name="remove_blacklist_number_title">Remove number</string>
+    <string name="remove_blacklist_number">Do you want to remove %s from the blacklist?</string>
+
+    <!-- Text for the onscreen "Blacklist" button -->
+    <string name="onscreenBlacklistText">Blacklist</string>
 
     <!-- Transparent in call widget -->
     <string name="transparent_in_call_widget">Transparent in call screen</string>
