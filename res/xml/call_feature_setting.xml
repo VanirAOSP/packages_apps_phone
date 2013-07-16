@@ -96,7 +96,9 @@
         android:key="button_blacklist"
         android:title="@string/blacklist_title"
         android:persistent="false">
-        <intent android:action="android.intent.action.MAIN"
+
+        <intent
+            android:action="android.intent.action.MAIN"
             android:targetPackage="com.android.phone"
             android:targetClass="com.android.phone.BlacklistSetting" />
     </PreferenceScreen>
@@ -108,11 +110,17 @@
             android:summary="@string/callback_sum" />
 
         <CheckBoxPreference
+            android:key="bg_incall_screen"
+            android:title="@string/bg_incall"
+            android:persistent="true"
+            android:defaultValue="false"
+            android:summary="@string/bg_incall_summary" />
+
+        <CheckBoxPreference
             android:key="button_rejected_as_missed"
             android:title="@string/rejected_as_missed"
             android:persistent="true"
             android:summary="@string/rejected_as_missed_sum" />
-
   </PreferenceCategory>
 
   <PreferenceCategory
@@ -169,11 +177,11 @@
           android:persistent="true"
           android:ringtoneType="notification"
           android:defaultValue="content://settings/system/notification_sound" />
+
       <CheckBoxPreference
           android:key="button_voicemail_notification_vibrate_key"
           android:title="@string/voicemail_notification_vibrate_when_title"
-          android:persistent="true"
-          />
+          android:persistent="true" />
   </PreferenceScreen>
 
   <CheckBoxPreference

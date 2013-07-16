@@ -1637,4 +1637,11 @@
     <string name="national_roaming">National data roaming</string>
     <!-- Mobile network settings screen, setting summary text -->
     <string name="national_roaming_summary">Connect to data services when nationally roaming</string>
+    <string name="phone_number_label">My phone number</string>
+    <string name="phone_number_summary">Set the phone number for this device</string>
+    <string name="msisdn_alpha_tag" translatable="false">Voice Line 1</string>
+
+    <!-- Incoming call in background -->
+    <string name="bg_incall">Incoming call in background</string>
+    <string name="bg_incall_summary">Keep incoming call UI in background when screen is on, show notification and play ringtone only</string>
 </resources>
