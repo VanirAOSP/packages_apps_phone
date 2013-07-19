@@ -362,9 +362,7 @@ public class Ringer {
                 Settings.System.QUIET_HOURS_START, 0);
         int quietHoursEnd = Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.QUIET_HOURS_END, 0);
-        boolean quietHoursRinger = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.QUIET_HOURS_RINGER, 0) != 0;
-        if (quietHoursEnabled && quietHoursRinger) {
+        if (quietHoursEnabled) {
             if (quietHoursStart == quietHoursEnd) {
                 return true;
             }
