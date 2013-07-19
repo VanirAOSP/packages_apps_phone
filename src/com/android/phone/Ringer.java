@@ -17,7 +17,6 @@
 package com.android.phone;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -32,12 +31,10 @@ import android.os.SystemClock;
 import android.os.SystemProperties;
 import android.os.SystemVibrator;
 import android.os.Vibrator;
-import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
 
 import com.android.internal.telephony.Phone;
-import java.util.Calendar;
 /**
  * Ringer manager for the Phone app.
  */
@@ -170,7 +167,7 @@ public class Ringer {
             AudioManager audioManager =
                     (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
 
-            if (audioManager.getStreamVolume(AudioManager.STREAM_RING) == 0 || inQuietHours()) {
+            if (audioManager.getStreamVolume(AudioManager.STREAM_RING) == 0) {
                 if (DBG) log("skipping ring because volume is zero");
                 return;
             }
@@ -354,29 +351,4 @@ public class Ringer {
     private static void log(String msg) {
         Log.d(LOG_TAG, msg);
     }
-
-    private boolean inQuietHours() {
-        boolean quietHoursEnabled = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.QUIET_HOURS_ENABLED, 0) != 0;
-        int quietHoursStart = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.QUIET_HOURS_START, 0);
-        int quietHoursEnd = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.QUIET_HOURS_END, 0);
-        if (quietHoursEnabled) {
-            if (quietHoursStart == quietHoursEnd) {
-                return true;
-            }
-            // Get the date in "quiet hours" format.
-            Calendar calendar = Calendar.getInstance();
-            int minutes = calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE);
-            if (quietHoursEnd < quietHoursStart) {
-                // Starts at night, ends in the morning.
-                return (minutes > quietHoursStart) || (minutes < quietHoursEnd);
-            } else {
-                return (minutes > quietHoursStart) && (minutes < quietHoursEnd);
-            }
-        }
-        return false;
-    }
-
 }
