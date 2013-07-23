@@ -75,7 +75,7 @@ import android.preference.PreferenceManager;
  */
 public class PhoneUtils {
     private static final String LOG_TAG = "PhoneUtils";
-    private static final boolean DBG = (PhoneGlobals.DBG_LEVEL >= 0);
+    private static final boolean DBG = (PhoneGlobals.DBG_LEVEL >= 2);
 
     // Do not check in with VDBG = true, since that may write PII to the system log.
     private static final boolean VDBG = false;
