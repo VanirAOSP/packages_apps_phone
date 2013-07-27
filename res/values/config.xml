@@ -94,6 +94,9 @@
     <!-- Audio parameter for setting noise suppression-->
     <string name="in_call_noise_suppression_audioparameter">noise_suppression=on=off</string>
 
+    <!-- Audio parameter for setting noise suppression-->
+    <string name="in_call_noise_suppression_audioparameter">noise_suppression=on=off</string>
+
     <!-- Determines if the current device should allow emergency numbers
          to be logged in the Call Log.
          (Some carriers require that emergency calls *not* be logged,
@@ -115,6 +118,19 @@
 
     <!-- If true, removes the Voice Privacy option from Call Settings -->
     <bool name="config_voice_privacy_disable">false</bool>
+
+    <!-- Configure certain GsmUmtsOptions to be available or not. The
+         default values are in Phone/res/values/config.xml and maybe overridden
+         in operator specific resource directories or device specific overlays. -->
+    <bool name="config_apn_expand" translatable="false">true</bool>
+    <bool name="config_operator_selection_expand" translatable="false">true</bool>
+    <bool name="config_prefer_2g" translatable="false">true</bool>
+
+    <!-- Voice quality filter parameter
+         Set this if your device's libaudio has a parameter to adjust voice quality
+         (don't forget to also overlay to value array in that case).
+         Leave empty to disable the feature. -->
+    <string name="voice_quality_param"></string>
 
     <!-- LTE/CDMA network mode to use for toggleLTE(true). -->
     <integer name="toggleLTE_lte_cdma_nt_mode">-1</integer>

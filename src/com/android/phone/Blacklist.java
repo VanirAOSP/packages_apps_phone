@@ -132,10 +132,11 @@ class Blacklist {
         }
 
         // Private and unknown number matching
-        if (PhoneUtils.PhoneSettings.isBlacklistPrivateNumberEnabled(mContext)) {
-            if (s.equals(PRIVATE_NUMBER)) {
+        if (s.equals(PRIVATE_NUMBER)) {
+            if (PhoneUtils.PhoneSettings.isBlacklistPrivateNumberEnabled(mContext)) {
                 return MATCH_PRIVATE;
             }
+            return MATCH_NONE;
         }
 
         if (PhoneUtils.PhoneSettings.isBlacklistUnknownNumberEnabled(mContext)) {
