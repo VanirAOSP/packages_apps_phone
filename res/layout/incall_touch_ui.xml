@@ -195,11 +195,8 @@
 
                 <!-- Separator between 5th (or 6th) button and right padding -->
                 <View style="@style/VerticalSeparator" />
-
             </LinearLayout>
-
         </LinearLayout>
-
     </RelativeLayout>
 
     <!--
@@ -211,9 +208,13 @@
               a bit of the bottom of the contact photo
             - The verticalOffset value gets us a little extra space above
               the topmost "Respond by SMS" icon
+            - The negative layout_marginBottom shifts us slightly downward;
+              we're already aligned with the bottom of the screen, but we
+              don't have an icon in the downward direction so the whole
+              bottom area of this widget is just wasted space.
     -->
-    <FrameLayout
-        android:id="@+id/incomingCallWidgetFrameLayout"
+    <com.android.internal.widget.multiwaveview.GlowPadView
+        android:id="@+id/incomingCallWidget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center|bottom"
@@ -221,7 +222,6 @@
         android:layout_marginBottom="-46dp"
         android:background="@color/incall_call_banner_background"
         android:visibility="gone"
-        android:layout_gravity="center_horizontal"
         android:gravity="top"
 
         prvandroid:targetDrawables="@array/incoming_call_widget_3way_targets"
@@ -237,6 +237,4 @@
         prvandroid:glowRadius="@*android:dimen/glowpadview_glow_radius"
         prvandroid:pointDrawable="@*android:drawable/ic_lockscreen_glowdot"
         />
-    </FrameLayout>
-
 </com.android.phone.InCallTouchUi>
