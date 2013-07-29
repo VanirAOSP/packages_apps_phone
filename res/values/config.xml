@@ -94,9 +94,6 @@
     <!-- Audio parameter for setting noise suppression-->
     <string name="in_call_noise_suppression_audioparameter">noise_suppression=on=off</string>
 
-    <!-- Audio parameter for setting noise suppression-->
-    <string name="in_call_noise_suppression_audioparameter">noise_suppression=on=off</string>
-
     <!-- Determines if the current device should allow emergency numbers
          to be logged in the Call Log.
          (Some carriers require that emergency calls *not* be logged,
