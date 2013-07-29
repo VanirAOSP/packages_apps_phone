@@ -398,6 +398,9 @@ public class PhoneUtils {
 
     static class PhoneSettings {
         /* vibration preferences */
+        static boolean vibOn60Secs(Context context) {
+            return getPrefs(context).getBoolean("button_vibrate_60", false);
+        }
         static boolean vibOn45Secs(Context context) {
             return getPrefs(context).getBoolean("button_vibrate_45", false);
         }
@@ -418,12 +421,12 @@ public class PhoneUtils {
         static boolean showCallLogAfterCall(Context context) {
             return getPrefs(context).getBoolean("button_calllog_after_call", false);
         }
-        static boolean markRejectedCallsAsMissed(Context context) {
-            return getPrefs(context).getBoolean("button_rejected_as_missed", false);
-        }
         static int flipAction(Context context) {
             String s = getPrefs(context).getString("flip_action", "0");
             return Integer.parseInt(s);
+        }
+        static boolean transparentInCallWidget(Context context) {
+            return getPrefs(context).getBoolean("transparent_in_call_widget", false);
         }
 
         /* blacklist handling */
@@ -442,6 +445,12 @@ public class PhoneUtils {
         }
         static boolean isBlacklistRegexEnabled(Context context) {
             return getPrefs(context).getBoolean("button_blacklist_regex", false);
+        }
+        static boolean isDirectCallBackEnabled(Context context) {
+            return getPrefs(context).getBoolean("button_callback", false);
+        }
+        static boolean markRejectedCallsAsMissed(Context context) {
+            return getPrefs(context).getBoolean("button_rejected_as_missed", false);
         }
 
         /* voice quality preferences */
