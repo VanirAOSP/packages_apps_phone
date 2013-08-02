@@ -45,22 +45,8 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-      android:key="pref_advanced_settings"
-      android:title="@string/advanced_setting">
-
-        <CheckBoxPreference
-            android:key="button_dialpad_autocomplete"
-            android:title="@string/dial_pad_autocomplete"
-            android:summary="@string/dial_pad_autocomplete_summary"
-            android:persistent="false"
-            android:defaultValue="true" />
-
-        <CheckBoxPreference
-            android:key="transparent_in_call_widget"
-            android:title="@string/transparent_in_call_widget"
-            android:summary="@string/transparent_in_call_widget_summary"
-            android:persistent="true"
-            android:defaultValue="false" />
+        android:key="pref_advanced_settings"
+        android:title="@string/advanced_setting">
 
         <CheckBoxPreference
             android:key="button_vibrate_outgoing"
