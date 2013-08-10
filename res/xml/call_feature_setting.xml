@@ -49,6 +49,13 @@
         android:title="@string/advanced_setting">
 
         <CheckBoxPreference
+            android:key="transparent_in_call_widget"
+            android:title="@string/transparent_in_call_widget"
+            android:summary="@string/transparent_in_call_widget_summary"
+            android:persistent="true"
+            android:defaultValue="false" />
+
+        <CheckBoxPreference
             android:key="button_vibrate_outgoing"
             android:title="@string/vibrate_outgoing"
             android:persistent="true"
@@ -96,9 +103,7 @@
             android:key="button_blacklist"
             android:title="@string/blacklist_title"
             android:persistent="false">
-
-            <intent
-                android:action="android.intent.action.MAIN"
+            <intent android:action="android.intent.action.MAIN"
                 android:targetPackage="com.android.settings"
                 android:targetClass="com.android.settings.Settings$BlacklistSettingsActivity" />
         </PreferenceScreen>
@@ -265,7 +270,7 @@
         <intent
             android:action="android.intent.action.MAIN"
             android:targetPackage="com.android.phone"
-            android:targetClass="com.android.phone.CdmaCallOptions" />
+            android:targetClass="com.android.phone.CdmaCallOptions"/>
     </PreferenceScreen>
 
 </PreferenceScreen>
