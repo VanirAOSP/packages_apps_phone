@@ -3761,7 +3761,6 @@ public class InCallScreen extends Activity
             // ringer is actually playing, so silence it.
             notifier.silenceRinger();
         }
-        detachListeners();
     }
 
     /**

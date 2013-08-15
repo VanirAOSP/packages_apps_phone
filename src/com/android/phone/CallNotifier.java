@@ -233,9 +233,6 @@ public class CallNotifier extends Handler
         mForwardedCalls = new HashSet<Connection>();
         mWaitingCalls = new HashSet<Connection>();
 
-        mForwardedCalls = new HashSet<Connection>();
-        mWaitingCalls = new HashSet<Connection>();
-
         mAudioManager = (AudioManager) mApplication.getSystemService(Context.AUDIO_SERVICE);
         mPowerManager = (PowerManager) mApplication.getSystemService(Context.POWER_SERVICE);
         mVibrator = (Vibrator) mApplication.getSystemService(Context.VIBRATOR_SERVICE);
@@ -1254,9 +1251,6 @@ public class CallNotifier extends Handler
                 toneToPlay = InCallTonePlayer.TONE_CALL_ENDED;
             }
         }
-        
-         // disable noise suppression
-	        PhoneUtils.turnOnNoiseSuppression(mApplication.getApplicationContext(), false);
 
         // disable noise suppression
         PhoneUtils.turnOnNoiseSuppression(mApplication.getApplicationContext(), false);
