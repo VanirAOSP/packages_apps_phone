@@ -185,8 +185,6 @@ public class Ringer {
 
             makeLooper();
             if (mFirstRingEventTime < 0) {
-                mFirstRingEventTime = SystemClock.elapsedRealtime();
-                mRingHandler.sendEmptyMessage(PLAY_RING_ONCE);
                 ContentResolver cr = mContext.getContentResolver();
                 boolean increasing = Settings.System.getInt(cr,
                         Settings.System.INCREASING_RING, 0) == 1;
@@ -204,14 +202,14 @@ public class Ringer {
                                 minVolume + "/" + ringerVolume);
                     }
                     if (mRingIncreaseInterval > 0) {
-                    }
-                    if (mRingIncreaseInterval > 0) {
                         mHandler.sendEmptyMessageDelayed(
                                 INCREASE_RING_VOLUME, mRingIncreaseInterval);
                     }
                 } else {
                     mRingerVolumeSetting = -1;
                 }
+                mFirstRingEventTime = SystemClock.elapsedRealtime();
+                mRingHandler.sendEmptyMessage(PLAY_RING_ONCE);
             } else {
                 // For repeat rings, figure out by how much to delay
                 // the ring so that it happens the correct amount of
@@ -238,7 +236,7 @@ public class Ringer {
     }
 
     boolean shouldVibrate() {
-        int ringerMode = mAudioManager.getRingerMode();        
+        int ringerMode = mAudioManager.getRingerMode();
         if (CallFeaturesSetting.getVibrateWhenRinging(mContext)) {
             return ringerMode != AudioManager.RINGER_MODE_SILENT;
         } else {
@@ -351,6 +349,29 @@ public class Ringer {
     }
 
     private void makeLooper() {
+        if (mHandler == null) {
+            mHandler = new Handler() {
+                @Override
+                public void handleMessage(Message msg) {
+                    switch (msg.what) {
+                        case INCREASE_RING_VOLUME:
+                            int ringerVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_RING);
+                            if (mRingerVolumeSetting > 0 && ringerVolume < mRingerVolumeSetting) {
+                                ringerVolume++;
+                                if (DBG) {
+                                    log("increasing ring volume to " +
+                                            ringerVolume + "/" + mRingerVolumeSetting);
+                                }
+                                mAudioManager.setStreamVolume(AudioManager.STREAM_RING, ringerVolume, 0);
+                                if (mRingIncreaseInterval > 0) {
+                                    sendEmptyMessageDelayed(INCREASE_RING_VOLUME, mRingIncreaseInterval);
+                                }
+                            }
+                            break;
+                    }
+                }
+            };
+        }
         if (mRingThread == null) {
             mRingThread = new Worker("ringer");
             mRingHandler = new Handler(mRingThread.getLooper()) {
