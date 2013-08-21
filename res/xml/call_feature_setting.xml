@@ -249,6 +249,18 @@
         android:entries="@array/dtmf_tone_entries"
         android:entryValues="@array/dtmf_tone_values" />
 
+    <CheckBoxPreference
+      android:key="button_play_dtmf_tone"
+      android:title="@string/dtmf_tone_enable_title"
+      android:persistent="false"
+      android:defaultValue="true" />
+
+    <CheckBoxPreference
+      android:key="button_dialpad_autocomplete"
+      android:title="@string/dial_pad_autocomplete"
+      android:persistent="false"
+      android:defaultValue="false" />
+
     <PreferenceScreen
         android:key="button_gsm_more_expand_key"
         android:title="@string/labelGSMMore"
