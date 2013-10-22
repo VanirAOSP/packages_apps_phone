@@ -1,4 +1,7 @@
 /*
+ * Copyright (c) 2012, The Linux Foundation. All rights reserved.
+ * Not a Contribution.
+ *
  * Copyright (C) 2008 The Android Open Source Project
  * Blacklist - Copyright (C) 2013 The CyanogenMod Project
  *
@@ -171,8 +174,8 @@ public class CallFeaturesSetting extends PreferenceActivity
             "button_voicemail_notification_vibrate_when_key";
     /* package */ static final String BUTTON_VOICEMAIL_NOTIFICATION_RINGTONE_KEY =
             "button_voicemail_notification_ringtone_key";
-    private static final String BUTTON_FDN_KEY = "button_fdn_key";
-    private static final String BUTTON_RESPOND_VIA_SMS_KEY = "button_respond_via_sms_key";
+    private static final String BUTTON_FDN_KEY   = "button_fdn_key";
+    private static final String BUTTON_RESPOND_VIA_SMS_KEY   = "button_respond_via_sms_key";
 
     private static final String BUTTON_RINGTONE_KEY    = "button_ringtone_key";
     private static final String BUTTON_VIBRATE_ON_RING = "button_vibrate_on_ring";
@@ -231,6 +234,7 @@ public class CallFeaturesSetting extends PreferenceActivity
     private static final int VM_RESPONSE_ERROR = 500;
     private static final int FW_SET_RESPONSE_ERROR = 501;
     private static final int FW_GET_RESPONSE_ERROR = 502;
+
 
     // dialog identifiers for voicemail
     private static final int VOICEMAIL_DIALOG_CONFIRM = 600;
@@ -694,6 +698,7 @@ public class CallFeaturesSetting extends PreferenceActivity
         return getString(R.string.voicemail_abbreviated) + " " + vmDisplay;
     }
 
+
     // override the startsubactivity call to make changes in state consistent.
     @Override
     public void startActivityForResult(Intent intent, int requestCode) {
@@ -864,21 +869,16 @@ public class CallFeaturesSetting extends PreferenceActivity
                 return;
             }
 
-            Cursor cursor = null;
-            try {
-                cursor = getContentResolver().query(data.getData(),
+            Cursor cursor = getContentResolver().query(data.getData(),
                     NUM_PROJECTION, null, null, null);
-                if ((cursor == null) || (!cursor.moveToFirst())) {
-                    if (DBG) log("onActivityResult: bad contact data, no results found.");
-                    return;
-                }
-                mSubMenuVoicemailSettings.onPickActivityResult(cursor.getString(0));
+            if ((cursor == null) || (!cursor.moveToFirst())) {
+                if (DBG) log("onActivityResult: bad contact data, no results found.");
                 return;
-            } finally {
-                if (cursor != null) {
-                    cursor.close();
-                }
             }
+
+            mSubMenuVoicemailSettings.onPickActivityResult(cursor.getString(0));
+            cursor.close();
+            return;
         }
 
         super.onActivityResult(requestCode, resultCode, data);
@@ -896,6 +896,7 @@ public class CallFeaturesSetting extends PreferenceActivity
                 new VoiceMailProviderSettings(mSubMenuVoicemailSettings.getPhoneNumber(),
                         FWD_SETTINGS_DONT_TOUCH));
     }
+
 
     /**
      * Wrapper around showDialog() that will silently do nothing if we're
@@ -1480,6 +1481,7 @@ public class CallFeaturesSetting extends PreferenceActivity
             return dialog;
         }
 
+
         return null;
     }
 
@@ -1735,6 +1737,7 @@ public class CallFeaturesSetting extends PreferenceActivity
         updateVoiceNumberField();
         mVMProviderSettingsForced = false;
         createSipCallSettings();
+        createImsSettings();
 
         mRingtoneLookupRunnable = new Runnable() {
             @Override
@@ -1834,6 +1837,12 @@ public class CallFeaturesSetting extends PreferenceActivity
         }
     }
 
+    private void createImsSettings() {
+        if (PhoneUtils.isCallOnImsEnabled()) {
+            addPreferencesFromResource(R.xml.ims_settings_category);
+        }
+    }
+
     // Gets the call options for SIP depending on whether SIP is allowed only
     // on Wi-Fi only; also make the other options preference invisible.
     private ListPreference getSipCallOptionPreference() {
@@ -1917,9 +1926,6 @@ public class CallFeaturesSetting extends PreferenceActivity
                     BUTTON_VOICEMAIL_NOTIFICATION_VIBRATE_KEY, false));
         }
 
-        if (mFlipAction != null) {
-            updateFlipActionSummary(mFlipAction.getValue());
-        }
         lookupRingtoneName();
         updateBlacklistSummary();
     }
