@@ -70,6 +70,8 @@ public class MediaHandler extends Handler {
     protected final RegistrantList mDisplayModeEventRegistrants
             = new RegistrantList();
 
+    private static boolean fubar = false;
+
     // UI Orientation Modes
     private static final int LANDSCAPE_MODE = 1;
     private static final int PORTRAIT_MODE = 2;
@@ -95,8 +97,13 @@ public class MediaHandler extends Handler {
      * This method returns the single instance of MediaHandler object *
      */
     public static synchronized MediaHandler getInstance() {
-        if (mInstance == null) {
-            mInstance = new MediaHandler();
+        try {
+            if (!fubar && mInstance == null) {
+                mInstance = new MediaHandler();
+            }
+        } catch (UnsatisfiedLinkError ule) {
+            fubar = true;
+            mInstance = null;
         }
         return mInstance;
     }
@@ -153,6 +160,7 @@ public class MediaHandler extends Handler {
      * Deinitialize Media
      */
     public static void deInit() {
+        if (fubar) return;
         Log.d(TAG, "deInit called");
         nativeDeInit();
         mInitCalledFlag = false;
@@ -169,6 +177,7 @@ public class MediaHandler extends Handler {
      * @param frame raw frames from the camera
      */
     public static void sendPreviewFrame(byte[] frame) {
+        if (fubar) return;
         nativeHandleRawFrame(frame);
     }
 
@@ -177,6 +186,7 @@ public class MediaHandler extends Handler {
      * @param st
      */
     public static void setSurface(SurfaceTexture st) {
+        if (fubar) return;
         Log.d(TAG, "setSurface(SurfaceTexture " + st + ")");
         mSurface = st;
         nativeSetSurface(st);
@@ -187,6 +197,7 @@ public class MediaHandler extends Handler {
      * re-sending an already created surface
      */
     public static void setSurface() {
+        if (fubar) return;
         Log.d(TAG, "setSurface()");
         if (mSurface == null) {
             Log.e(TAG, "sSurface is null. So not passing it down");
@@ -228,6 +239,7 @@ public class MediaHandler extends Handler {
      * {@link MediaHandler#onMediaEvent(int)}
      */
     private static void registerForMediaEvents(MediaHandler instance) {
+        if (fubar) return;
         Log.d(TAG, "Registering for Media Callback Events");
         nativeRegisterForMediaEvents(instance);
     }
