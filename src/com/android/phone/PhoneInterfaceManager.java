@@ -300,6 +300,17 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         mApp.startActivity(intent);
     }
 
+    private MyHandler myhandler = new MyHandler();
+
+    public void toggle2G(boolean on) {
+        int bestAvailableType = (mPhone.getLteOnGsmMode() == 0) ? SystemProperties.getInt("ro.telephony.default_network",Phone.PREFERRED_NT_MODE) : Phone.NT_MODE_LTE_GSM_WCDMA;
+        int networkType = on ? Phone.NT_MODE_GSM_ONLY : bestAvailableType;
+
+        Log.i(LOG_TAG, "set preferred network type="+networkType);
+        android.telephony.MSimTelephonyManager.putIntAtIndex(mPhone.getContext().getContentResolver(), android.provider.Settings.Global.PREFERRED_NETWORK_MODE, mPhone.getSubscription(), networkType);
+        mPhone.setPreferredNetworkType(networkType, myhandler.obtainMessage(myhandler.MESSAGE_SET_PREFERRED_NETWORK_TYPE));
+    }
+
     public void toggleLTE(boolean on) {
         int network = -1;
         boolean usesQcLte = SystemProperties.getBoolean(
@@ -954,5 +965,52 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
 
     public void setPhone(Phone phone) {
         mPhone = phone;
+    }
+
+    private class MyHandler extends Handler {
+
+        static final int MESSAGE_GET_PREFERRED_NETWORK_TYPE = 0;
+        static final int MESSAGE_SET_PREFERRED_NETWORK_TYPE = 1;
+
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case MESSAGE_GET_PREFERRED_NETWORK_TYPE:
+                    handleGetPreferredNetworkTypeResponse(msg);
+                    break;
+
+                case MESSAGE_SET_PREFERRED_NETWORK_TYPE:
+                    handleSetPreferredNetworkTypeResponse(msg);
+                    break;
+            }
+        }
+
+        private void handleGetPreferredNetworkTypeResponse(Message msg) {
+            AsyncResult ar = (AsyncResult) msg.obj;
+
+            if (ar.exception == null) {
+                int type = ((int[])ar.result)[0];
+                Log.i(LOG_TAG, "get preferred network type="+type);
+                android.telephony.MSimTelephonyManager.putIntAtIndex(
+                        mPhone.getContext().getContentResolver(),
+                        android.provider.Settings.Global.PREFERRED_NETWORK_MODE,
+                        mPhone.getSubscription(), type);
+            } else {
+                // Weird state, disable the setting
+                Log.i(LOG_TAG, "get preferred network type, exception="+ar.exception);
+            }
+        }
+
+        private void handleSetPreferredNetworkTypeResponse(Message msg) {
+            AsyncResult ar = (AsyncResult) msg.obj;
+
+            if (ar.exception != null) {
+                // Set UI to current state
+                Log.i(LOG_TAG, "set preferred network type, exception=" + ar.exception);
+                mPhone.getPreferredNetworkType(obtainMessage(MESSAGE_GET_PREFERRED_NETWORK_TYPE));
+            } else {
+                Log.i(LOG_TAG, "set preferred network type done");
+            }
+        }
     }
 }
